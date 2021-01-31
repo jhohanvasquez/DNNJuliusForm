@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Test.Service.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Test.Service.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="js_DNNJuliusForm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CelularPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CelularSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoNiu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartamentoPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartamentoSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DireccionObra" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DireccionPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DireccionSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentoIdentidadIngeniero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentoIdentidadPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentoIdentidadSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstratoObra" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Factibilidad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="MatriculaProfesionalIngeniero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MunicipioPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MunicipioSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreIngeniero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreObra" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombrePropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreRazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TelefonoPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TelefonoSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumentoPropietario" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoDocumentoSolicitante" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="js_DNNJuliusFormArchivo" nillable="true" type="tns:ArrayOfjs_DNNJuliusFormArchivo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="js_DNNJuliusForm" nillable="true" type="tns:js_DNNJuliusForm" />
+  <xs:complexType name="ArrayOfjs_DNNJuliusFormArchivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="js_DNNJuliusFormArchivo" nillable="true" type="tns:js_DNNJuliusFormArchivo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfjs_DNNJuliusFormArchivo" nillable="true" type="tns:ArrayOfjs_DNNJuliusFormArchivo" />
+  <xs:complexType name="js_DNNJuliusFormArchivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DNNJuliusFormId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Fuente" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="RutaFisica" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="js_DNNJuliusForm" nillable="true" type="tns:js_DNNJuliusForm" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="js_DNNJuliusFormArchivo" nillable="true" type="tns:js_DNNJuliusFormArchivo" />
+</xs:schema>

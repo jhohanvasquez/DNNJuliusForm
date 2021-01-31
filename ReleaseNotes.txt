@@ -1,0 +1,24 @@
+﻿<h3>DNNJuliusForm</h3>
+<p class="Contributor">
+	julius2grow.com <br />
+	<a href="mailto:luis.gomez@julius2grow.com">luis.gomez@julius2grow.com</a><br />
+	<a href=https://www.julius2grow.com/>https://www.julius2grow.com/</a><br />
+	This extension was created using <a href="https://www.christoc.com">Christoc's</a> Module Development Templates for DNN.
+</p>
+<hr/>
+<div class="License">
+	<h3>About the DNNJuliusForm</h3>
+	<p class="Owner">
+		<b>Version CHANGEME</b><br /><br />
+	</p>
+	<p>Description about version.</p>
+	
+	<h4>Bug Fixes</h4>
+	<ul>
+			<li>List</li>
+			<li>of</li>
+			<li>bug</li>
+			<li>fixes</li>
+	</ul>
+	
+</div>

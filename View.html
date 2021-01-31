@@ -1,0 +1,299 @@
+﻿[ModuleAction:{controlKey : "Edit", securityAccessLevel : "Edit",  titleKey: "EditModule", localResourceFile: "~/DesktopModules/DNNJuliusForm/App_LocalResources/View.resx" }]
+<div ng-controller="DNNJuliusFormController" class="container ax-form">
+
+    <div class="ax-modal-interna alert alert-dismissible fade show" ng-class="{'alert-danger': error, 'alert-success': echo}" role="alert" ng-show="error === true || echo === true" ng-hide="error === false && echo === false">
+
+        <div class="modal-contenido">
+
+            <h4 class="alert-heading">{{titulo}}</h4>
+            <p>{{mensaje}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="btn-container-modal">
+                <input type="button" value="Volver al Inicio" ng-click="Redirect()">
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <div class="row" style="display:none">
+            <span class="info">Señor usuario, introduzca el código NIU generado en el proceso de  factibilidad y el número de proceso de factibilidad</span>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="niu">* NIU: </label>
+                <input type="text" id="niu" ng-model="model.CodigoNiu" onkeypress="return isNumberKey(event)" MaxLength="50" ax-required="true" ax-required-text="Debe ingresar el NIU" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="factibilidad">* Número de proceso de factibilidad: </label>
+                <input type="text" id="factibilidad" ng-model="model.Factibilidad" onkeypress="return isNumberKey(event)" MaxLength="50" ax-required="true" ax-required-text="Debe ingresar el Número de proceso de factibilidad" />
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="datosh4">Datos del solicitante</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="nombresS">* Nombre completo o razón social: </label>
+                <input type="text" id="nombresS" ng-model="model.NombreRazonSocial" onkeypress="return isLetterKey(event)" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar el nombre o la razón social" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="tipoDocumentoS">* Tipo de documento de identidad: </label>
+                <select id="tipoDocumentoS" ng-model="model.TipoDocumentoSolicitante" ax-required="true" ax-required-text="Debe ingresar el Tipo de documento de identidad">
+                    <option value="">Seleccione una opción</option>
+                    <option value="CC">CC</option>
+                    <option value="CE">CE</option>
+                    <option value="NIT">NIT</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="documentoIdentidadS">* Número de documento de identidad: </label>
+                <input type="text" id="documentoIdentidadS" ng-model="model.DocumentoIdentidadSolicitante" onkeypress="return isNumberKey(event)" MaxLength="20" ax-required="true" ax-required-text="Debe ingresar el Número de documento de identidad del solicitante" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="direccionS">* Dirección: </label>
+                <input type="text" id="direccionS" ng-model="model.DireccionSolicitante" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar la Dirección del solicitante" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <div class="ax-campo-responsive d-flex">
+                    <div class="col-md-6 no-pad">
+                        <label for="departamentoS">* Departamento: </label>
+                        <select name="level" ng-model="model.DepartamentoSolicitante" ng-options="obj.Id as obj.Name for obj in departaments" ng-change="loadCity('s', model.DepartamentoSolicitante)">
+                        </select>
+                    </div>
+                    <div class="col-md-6 no-pad pad-left">
+                        <label for="municipioS">* Municipio: </label>
+                        <select name="level" ng-model="model.MunicipioSolicitante" ng-options="obj.Id as obj.Name for obj in cities" ax-required="true" ax-required-text="Debe ingresar el Municipio del solicitante">
+                            <option value="" selected="selected">Seleccione</option>
+                        </select>
+                        <asp:RequiredFieldValidator runat="server" ID="RfvmunicipioS" ControlToValidate="municipioS" ForeColor="Red" ErrorMessage="Debe ingresar el Municipio del solicitante" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="telefonoS">Teléfono: </label>
+                <input type="text" id="telefonoS" ng-model="model.TelefonoSolicitante" onkeypress="return isNumberKey(event)" MaxLength="15" ax-required="false" ax-required-text="Debe ingresar el Teléfono del solicitante" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="celularS">* Celular: </label>
+                <input type="text" id="celularS" ng-model="model.CelularSolicitante" onkeypress="return isNumberKey(event)" MaxLength="15" ax-required="true" ax-required-text="Debe ingresar el Celular del solicitante" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="emailS">* Email: </label>
+                <input type="email" id="emailS" ng-model="model.EmailSolicitante" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar el Email del solicitante con un formato válido" ax-email-text="Debe ingresar el Email del solicitante con un formato válido" js-pattern-message="Debe ingresar un Email valido" />
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="datosh4">Datos del propietario y/o usuario potencial</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="nombresP">* Nombre completo o razón social </label>
+                <input type="text" id="nombresP" ng-model="model.NombrePropietario" onkeypress="return isLetterKey(event)" MaxLength="100" ax-required="true" ax-required-text="Debe ingresar el Nombres del propietario y/o usuario potencial" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="tipoDocumentoP">* Tipo de documento de identidad: </label>
+                <select id="tipoDocumentoP" ng-model="model.TipoDocumentoPropietario" ax-required="true" ax-required-text="Debe ingresar el Tipo de documento de identidad del propietario y/o usuario potencial">
+                    <option value="">Seleccione una opción</option>
+                    <option value="CC">CC</option>
+                    <option value="CE">CE</option>
+                    <option value="NIT">NIT</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="documentoIdentidadP">* Número de documento de identidad: </label>
+                <input type="text" id="documentoIdentidadP" ng-model="model.DocumentoIdentidadPropietario" onkeypress="return isNumberKey(event)" MaxLength="20" ax-required="true" ax-required-text="Debe ingresar el Número de documento de identidad del propietario y/o usuario potencial" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="direccionP">* Dirección: </label>
+                <input type="text" id="direccionP" ng-model="model.DireccionPropietario" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar la Dirección del propietario y/o usuario potencial" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo-responsive d-flex">
+                <div class="col-md-6 no-pad ">
+                    <label for="departamentoP">* Departamento: </label>
+                    <select name="level" ng-model="model.DepartamentoPropietario" ng-options="obj.Id as obj.Name for obj in departaments" ng-change="loadCity('p', model.DepartamentoPropietario)">
+                    </select>
+                </div>
+                <div class="col-md-6 no-pad pad-left">
+                    <label for="municipioP">* Municipio: </label>
+                    <select name="level" ng-model="model.MunicipioPropietario" ng-options="obj.Id as obj.Name for obj in citiesp" ax-required="true" ax-required-text="Debe ingresar el Municipio del propietario y/o usuario potencial">
+                        <option value="" selected="selected">Seleccione</option>
+                    </select>
+                    <asp:RequiredFieldValidator runat="server" ID="RfvmunicipioP" ControlToValidate="municipioP" ForeColor="Red" ErrorMessage="Debe ingresar el Municipio del propietario y/o usuario potencial" />
+                </div>
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="telefonoP">Teléfono: </label>
+                <input type="text" id="telefonoP" ng-model="model.TelefonoPropietario" onkeypress="return isNumberKey(event)" MaxLength="15" ax-required="false" ax-required-text="Debe ingresar el Teléfono del propietario y/o usuario potencial" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="celularP">* Celular: </label>
+                <input type="text" id="celularP" ng-model="model.CelularPropietario" onkeypress="return isNumberKey(event)" MaxLength="15" ax-required="true" ax-required-text="Debe ingresar el Celular del propietario y/o usuario potencial" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="emailP">* Email: </label>
+                <input type="email" id="emailP" ng-model="model.EmailPropietario" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar el Email del propietario y/o usuario potencial con un formato válido" ax-email-text="Debe ingresar el Email del propietario y/o usuario potencial con un formato válido" js-pattern-message="Debe ingresar un Email valido" />
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="datosh4">Información de obra</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="nombreO">* Nombre de obra: </label>
+                <input type="text" id="nombreO" ng-model="model.NombreObra" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar el Nombre de la obra" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="direccionO">* Dirección: </label>
+                <input type="text" id="direccionO" ng-model="model.DireccionObra" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar la Dirección de la obra" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo" runat="server" id="DivEstrato">
+                <label for="estratoO">Estrato socioeconómico del proyecto(Solo residenciales): </label>
+                <select id="estratoO" ng-model="model.EstratoObra" OnSelectedIndexChanged="stratumSelected" ax-required="false" ax-required-text="Debe seleccionar una opción">
+                    <option value="">Seleccione</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="datosh4">Datos del ingeniero responsable</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="nombresI">* Nombre completo: </label>
+                <input type="text" id="nombresI" ng-model="model.NombreIngeniero" onkeypress="return isLetterKey(event)" MaxLength="255" ax-required="true" ax-required-text="Debe ingresar los Nombres del ingeniero responsable" />
+            </div>
+            <div class="col-md-6 ax-campo">
+                <label for="documentoI">* Número de documento de identidad(CC): </label>
+                <input type="text" id="documentoI" ng-model="model.DocumentoIdentidadIngeniero" onkeypress="return isNumberKey(event)" MaxLength="20" ax-required="true" ax-required-text="Debe ingresar el Número de documento de identidad del ingeniero responsable" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ax-campo">
+                <label for="MatriculaProfesionalI">* Número de Matricula Profesional: </label>
+                <input type="text" id="MatriculaProfesionalI" ng-model="model.MatriculaProfesionalIngeniero" onkeypress="return isNumberKey(event)" MaxLength="100" ax-required="true" ax-required-text="Debe ingresar el Número de Matricula Profesional del ingeniero responsable" />
+            </div>
+            <div class="col-md-6">
+                <label>Acepto la entrega de la respuesta a mi solicitud via E-mail: </label>
+                <div class="entrega-email d-flex">
+                    <div>
+                        <input type="radio" id="respuestaSi" name="respuesta" checked="checked" value="true" ng-model="model.Respuesta" />
+                        <label for="respuestaSi">S&iacute;</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="respuestaNo" name="respuesta" value="false" ng-model="model.Respuesta" />
+                        <label for="respuestaNo">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="datosh4">Subida de documentos</h4>
+        </div>
+        <div class="row">
+            <p>
+                Señor usuario, a continuación suba los documentos del trámite en cada una de las secciones dispuestas para ello, se recomienda que tenga los documentos en el formato adecuado para poder
+                tener una carga satisfactoria de la documentación, no se permitirá subida de documentos en formatos distintos a los dispuestos para cada requisito.
+            </p>
+        </div>
+        <div>
+            <div class="row">
+                <h4 class="datosh4">Planos del Julius Form's - formato .dwg, .dwf, .zip - Documentación Obligatoria</h4>
+            </div>
+            <div class="row">
+                <input type="file" js-file-upload data-fuente="planos" accept=".dwg, .dwf, .zip" data-max-file="2" />
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <h4 class="datosh4">Memorias de cálculo del proyecto - formatos .xls, .xlsx, .docx, .pdf. zip - Documentación Obligatoria</h4>
+            </div>
+            <div class="row">
+                <input type="file" js-file-upload data-fuente="memorias" accept=".xls, .xlsx, .docx, .pdf, .zip" data-max-file="2" />
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <h4 class="datosh4">Licencia de Construcción - formatos .pdf</h4>
+            </div>
+            <div class="row">
+                <input type="file" js-file-upload data-fuente="licencia" accept=".pdf" ax-required="false" data-max-file="1" />
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <h4 class="datosh4">Permiso de conexion a redes de terceros - formatos .pdf</h4>
+            </div>
+            <div class="row">
+                <input type="file" js-file-upload data-fuente="permiso" accept=".pdf" ax-required="false" data-max-file="1" />
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="showErrorUploadEmpty" class="error-required">Por favor adjunte todos los documentos marcados como obligatorios.</div>
+            <div ng-repeat="x in myFiles" class="js-files-upload">
+                {{x.fileName}} - {{x.Source}}
+                <span ng-click="deleteFile(x)">x</span>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <h4 for="observaciones" class="datosh4">Observaciones</h4>
+            <p>
+                Señor usuario, por favor especifique consideraciones relevantes adicionales  respecto al  proyecto en este campo de observaciones.  En caso de que el proyecto se vaya a desarrollar por etapas por favor informenos el número de etapas  o  fases de construcción,   y especifique el número de  unidades por etapa  (casas o torres) de acuerdo a su tipo de proyecto.
+            </p>
+            <textarea id="observaciones" cols="100" rows="5" ng-model="model.Observaciones" maxlength="400"></textarea>
+        </div>
+        <div class="row pt-4">
+            <input type="button" id="Guardar" class="btn-enviar-form" value="Enviar" ng-click="enviar()" />
+        </div>
+        <div style="display: none">
+            <asp:TextBox runat="server" ID="TxtSac"></asp:TextBox>
+            <asp:TextBox runat="server" ID="TextUso"></asp:TextBox>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+    function isLetterKey(evt) {
+        var regex = new RegExp("^[a-zA-Z ]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>
+<script language="javascript" type="text/javascript">
+    var DNNJuliusFormId = parseInt("[ModuleContext:ModuleId]");
+</script>
+[JavaScript:{ path: "~/js/General/angular.js"}]
+[JavaScript:{ path: "~/js/General/Site.js"}]
+[JavaScript:{ path: "~/DesktopModules/DNNJuliusForm/Scripts/ItemView.js"}]
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50903/ServiceTest.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Test.Service.Model" />
+  <xs:element name="GuardarDNNJuliusForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Test.Service.Model" minOccurs="0" name="oForm" nillable="true" type="q1:js_DNNJuliusForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarDNNJuliusFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Test.Service.Model" minOccurs="0" name="GuardarDNNJuliusFormResult" nillable="true" type="q2:js_DNNJuliusForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarDNNJuliusFormArchivo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Test.Service.Model" minOccurs="0" name="oFormFile" nillable="true" type="q3:js_DNNJuliusFormArchivo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarDNNJuliusFormArchivoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Test.Service.Model" minOccurs="0" name="GuardarDNNJuliusFormArchivoResult" nillable="true" type="q4:js_DNNJuliusFormArchivo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
